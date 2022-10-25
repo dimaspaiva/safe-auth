@@ -1,4 +1,4 @@
-import { createUser } from "../../functions/create-user";
+import { createUser } from "../../src/functions/create-user";
 
 describe("Create User", () => {
   it("should create a new user", async () => {
@@ -26,7 +26,7 @@ describe("Create User", () => {
     };
 
     await expect(createUser(dummyUserData)).rejects.toThrowError(
-      "Failed to create user - Missing property name"
+      "Validation failed, missing name property"
     );
   });
 
@@ -39,7 +39,7 @@ describe("Create User", () => {
     };
 
     await expect(createUser(dummyUserData)).rejects.toThrowError(
-      "Failed to create user - Missing property email"
+      "Validation failed, missing email property"
     );
   });
 
@@ -52,7 +52,7 @@ describe("Create User", () => {
     };
 
     await expect(createUser(dummyUserData)).rejects.toThrowError(
-      "Failed to create user - Missing property password"
+      "Validation failed, missing password property"
     );
   });
 });

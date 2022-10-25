@@ -1,16 +1,14 @@
 import { CreateUser } from "../models/User";
+import { validateObject } from "../utils/object-validation";
+
+const requiredUserProps = ["name", "email"];
 
 export const createUser: CreateUser = async (user) => {
   const { password, ...newUser } = user;
 
-  if (!newUser.name) {
-    throw new Error("Failed to create user - Missing property name");
-  }
-  if (!newUser.email) {
-    throw new Error("Failed to create user - Missing property email");
-  }
+  validateObject(newUser, requiredUserProps);
   if (!password) {
-    throw new Error("Failed to create user - Missing property password");
+    throw new Error("Validation failed, missing password property");
   }
 
   return {
